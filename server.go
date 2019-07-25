@@ -1,14 +1,11 @@
 package main
 
 import (
-    "crypto/tls"
     "fmt"
-    "golang.org/x/crypto/acme/autocert"
     "io/ioutil"
     "log"
     "net/http"
     "os"
-    "path/filepath"
     "strconv"
     "strings"
     "crypto/rand"
