@@ -54,6 +54,7 @@ func (fHandler FHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.Header()[k] = v
 	}
 	w.WriteHeader(resp.status)
+	fmt.println(resp.body)
 	w.Write(resp.body)
 }
 
