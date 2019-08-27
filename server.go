@@ -90,6 +90,8 @@ func (m PostSyncManager) handler(r *http.Request) Resp {
 		return errResp(err.Error())
 	}
 	defer resp.Body.Close()
+	fmt.Println("93")
+	fmt.Println(resp.Header.Get("X-R-Reply-Id"))
 
 	if replyId := resp.Header.Get("X-R-Reply-Id"); replyId != "" {
 		timeout, err := time.ParseDuration(resp.Header.Get("X-R-Reply-Timeout"))
