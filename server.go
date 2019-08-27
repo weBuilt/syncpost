@@ -49,6 +49,7 @@ func (m PostSyncManager) run() {
 type FHandler func(*http.Request) Resp
 
 func (fHandler FHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("hello2")
 	resp := fHandler(r)
 	for k, v := range resp.header {
 		w.Header()[k] = v
