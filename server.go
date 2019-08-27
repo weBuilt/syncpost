@@ -99,6 +99,7 @@ func (m PostSyncManager) handler(r *http.Request) Resp {
 			return errResp(err.Error())
 		}
 		respChan := make(chan Resp)
+		fmt.Println("respChan")
 		m.syncStartMainChan <- Req{replyId, respChan}
 		go m.expire(timeout)
 		resp := <-respChan
