@@ -49,7 +49,7 @@ func (m PostSyncManager) run() {
 type FHandler func(*http.Request) Resp
 
 func (fHandler FHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("hello2")
+	fmt.Println("hello3")
 	resp := fHandler(r)
 	for k, v := range resp.header {
 		w.Header()[k] = v
@@ -69,6 +69,9 @@ func (m PostSyncManager) handler(r *http.Request) Resp {
 			return errResp(err.Error())
 		}
 		body, err := ioutil.ReadAll(r.Body)
+		fmt.Println("71")
+		fmt.Println(body)
+		fmt.Println(err)
 		if err != nil {
 			return errResp(err.Error())
 		}
@@ -97,6 +100,8 @@ func (m PostSyncManager) handler(r *http.Request) Resp {
 		m.syncStartMainChan <- Req{replyId, respChan}
 		go m.expire(timeout)
 		resp := <-respChan
+		fmt.Println("102")
+		fmt.Println(resp.body)
 		return resp
 	}
 	body, err := ioutil.ReadAll(resp.Body)
